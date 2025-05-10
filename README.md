@@ -6,3 +6,14 @@ I hope to have something similar to obsidians and dendrons note linking capabili
 
 Cheers ^^.
 
+## CSV Data storage
+
+because sqlite was too damn hard to make work with lua on windows in 1h ....
+
+### Data Model
+
+- 1 file
+- headers as follows
+
+| file_id | file_path | links |
+| ------- | --------- | ----- |
