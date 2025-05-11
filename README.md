@@ -35,3 +35,11 @@ just to remind me what functions I have added...
 - Append new value to json
 - List all values in json
 - Remove value from json
+
+# TODOs
+
+- reduce hash size
+- add remove from links
+- optimize json travel
+- implement ui like minifiles for navigation and edits ?
+- use telescope for new links ?
