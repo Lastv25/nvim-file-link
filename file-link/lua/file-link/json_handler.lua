@@ -99,6 +99,28 @@ function M.append_to_file(new_text)
 
 end
 
+---@param new_text string
+function M.remove_leaf_from_file(new_text)
+  local file_to_remove = new_text.fargs[1]
+  local hash_index = hash(file_to_remove)
+  local json_file_path = Utils.get_full_path(dir,file_name)
+  local existing_data = M.list_values_from_file()
+  -- if file does nox exist then do nothing
+  if existing_data == nil then
+    return nil
+  end
+  local idx_found = 0
+  for idx,element in ipairs(existing_data.hashes_index) do
+    local element_val = element[hash_index]
+    if element_val ~= nil then
+      idx_found = idx
+    end
+  end
+  if idx_found ~= 0 then
+    table.remove(existing_data['hashes_index'], idx_found)
+    Utils.write_to_file(json_file_path, vim.json.encode(existing_data))
+  end
+end
 
 return M
 
