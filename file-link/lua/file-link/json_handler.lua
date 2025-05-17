@@ -122,5 +122,37 @@ function M.remove_leaf_from_file(new_text)
   end
 end
 
+
+---@param file_to_remove string
+---@param link_value string
+function M.remove_link_from_leaf(file_to_remove, link_value)
+  local hash_index = hash(file_to_remove)
+  local json_file_path = Utils.get_full_path(dir,file_name)
+  local existing_data = M.list_values_from_file()
+  -- if file does nox exist then do nothing
+  if existing_data == nil then
+    return nil
+  end
+  local idx_found = 0
+  for idx,element in ipairs(existing_data.hashes_index) do
+    local element_val = element[hash_index]
+    if element_val ~= nil then
+      idx_found = idx
+    end
+  end
+  local idx_link_found = 0
+  if idx_found ~= 0 then
+    for idx_link, link in ipairs(existing_data['hashes_index'][idx_found]['links']) do
+      if link == link_value then
+        idx_link_found = idx_link
+      end
+    end
+    if idx_link_found ~= 0 then
+      table.remove(existing_data['hashes_index'][idx_found]['links'])
+      Utils.write_to_file(json_file_path, vim.json.encode(existing_data))
+    end
+  end
+end
+
 return M
 
