@@ -10,7 +10,7 @@ Cheers ^^.
 
 ## Json Data storage
 
-because sqlite was too damn hard to make work with lua on windows in 1h ....
+because sqilite was too damn hard to make work with lua on windows in 1h ....
 
 ### Data Model
 
